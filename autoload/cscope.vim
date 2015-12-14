@@ -28,6 +28,41 @@ function! cscope#global_definition(keyword)
   return cscope#process_data(query)
 endfunction
 
+function! cscope#functions_called_by(keyword)
+  let query = "cscope -d -L2 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#functions_calling(keyword)
+  let query = "cscope -d -L3 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#text_string(keyword)
+  let query = "cscope -d -L4 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#egrep_pattern(keyword)
+  let query = "cscope -d -L6 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#find_file(keyword)
+  let query = "cscope -d -L7 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#including_this_file(keyword)
+  let query = "cscope -d -L8 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
+function! cscope#assignments_to_symbol(keyword)
+  let query = "cscope -d -L9 " . shellescape(a:keyword)
+  return cscope#process_data(query)
+endfunction
+
 function! cscope#line_parse(line)
   let details = split(a:line)
   return {
