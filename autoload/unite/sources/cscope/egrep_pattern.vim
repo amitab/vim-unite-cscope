@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/egrep_pattern',
-\ 'description' : 'disp egrep_patterns',
+\ 'description' : 'Find this egrep pattern',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

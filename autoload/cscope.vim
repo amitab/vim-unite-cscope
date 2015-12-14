@@ -3,6 +3,12 @@ set cpo&vim
 
 function! cscope#execute_command(cmd)
   let response = system(a:cmd)
+  
+  if response ==~ "cscope: cannot open file cscope.out"
+    call unite#print_source_error('Please generate cscope database')
+    return ""
+  endif
+
   return response
 endfunction
 

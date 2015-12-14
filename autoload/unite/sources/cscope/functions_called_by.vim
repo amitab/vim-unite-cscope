@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/functions_called_by',
-\ 'description' : 'disp functions_called_bys',
+\ 'description' : 'Find functions called by this function',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

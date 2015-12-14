@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/text_string',
-\ 'description' : 'disp text_strings',
+\ 'description' : 'find this text string',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

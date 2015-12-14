@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/assignments_to_symbol',
-\ 'description' : 'disp assignments_to_symbols',
+\ 'description' : 'Find assignments to this symbol',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

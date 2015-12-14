@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/global_definition',
-\ 'description' : 'disp global_definitions',
+\ 'description' : 'Find this global definition',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

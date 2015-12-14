@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/find_this_symbol',
-\ 'description' : 'disp find_this_symbols',
+\ 'description' : 'Find this C symbol',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{

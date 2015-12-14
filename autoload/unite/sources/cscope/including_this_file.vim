@@ -7,7 +7,7 @@ endfunction "}}}
 
 let s:source = {
 \ 'name' : 'cscope/including_this_file',
-\ 'description' : 'disp including_this_files',
+\ 'description' : 'Find files including this file',
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
