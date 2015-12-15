@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/including_this_file',
 \ 'description' : 'Find files including this file',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/including_this_file] ')
   call unite#print_message('find files including this file')
 
-  let keyword = input("Find files including this file: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#including_this_file(keyword)
 
   return map(data, '{

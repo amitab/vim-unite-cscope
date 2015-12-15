@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/functions_called_by',
 \ 'description' : 'Find functions called by this function',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/functions_called_by] ')
   call unite#print_message('find functions called by')
 
-  let keyword = input("Find functions called by: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#functions_called_by(keyword)
 
   return map(data, '{

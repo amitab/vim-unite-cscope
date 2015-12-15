@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/global_definition',
 \ 'description' : 'Find this global definition',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/global_definition] ')
   call unite#print_message('find this global definition')
 
-  let keyword = input("Find this global definition: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#global_definition(keyword)
 
   return map(data, '{

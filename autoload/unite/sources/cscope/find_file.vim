@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/find_file',
 \ 'description' : 'Find files',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/find_file] ')
   call unite#print_message('find this file')
 
-  let keyword = input("Find this file: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#find_file(keyword)
 
   return map(data, '{

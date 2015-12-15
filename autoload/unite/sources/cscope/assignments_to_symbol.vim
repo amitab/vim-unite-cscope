@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/assignments_to_symbol',
 \ 'description' : 'Find assignments to this symbol',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/assignments_to_symbol] ')
   call unite#print_message('find assignments to symbol')
 
-  let keyword = input("Find assignments to this symbol: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#assignments_to_symbol(keyword)
 
   return map(data, '{

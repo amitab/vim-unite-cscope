@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/text_string',
 \ 'description' : 'find this text string',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/text_string] ')
   call unite#print_message('find this text string')
 
-  let keyword = input("Find this text string: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#text_string(keyword)
 
   return map(data, '{

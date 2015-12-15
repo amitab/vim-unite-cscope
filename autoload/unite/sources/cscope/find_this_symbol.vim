@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/find_this_symbol',
 \ 'description' : 'Find this C symbol',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/find_this_symbol] ')
   call unite#print_message('find this symbol')
 
-  let keyword = input("Find C Symbol: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#c_symbol(keyword)
 
   return map(data, '{

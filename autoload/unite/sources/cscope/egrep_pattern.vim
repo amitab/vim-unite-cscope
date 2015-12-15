@@ -8,13 +8,14 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/egrep_pattern',
 \ 'description' : 'Find this egrep pattern',
+\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/egrep_pattern] ')
   call unite#print_message('find this egrep pattern')
 
-  let keyword = input("Find this egrep pattern: ")
+  let keyword = cscope#get_keyword()
   let data = cscope#egrep_pattern(keyword)
 
   return map(data, '{
