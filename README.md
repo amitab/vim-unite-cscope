@@ -3,7 +3,8 @@
 Uniting cscope with vim
 This is a package similar to my other package (https://www.github.com/amitab/atom-cscope)
 
-PS: I just learnt vim scripting recently and there may be mistakes/better way of doing things. If you find any problems, please let me know.
+PS: I just learnt vim scripting recently and there may be mistakes/better way of doing things. 
+If you find any problems, please let me know.
 
 ## What it does?
 
@@ -19,6 +20,28 @@ PS: I just learnt vim scripting recently and there may be mistakes/better way of
 10. Find assignments to this symbol:            ✓
 
 ## Set it up?
+
+This package depends on vim-unite (https://github.com/Shougo/unite.vim)
+
+After you've installed vim-unite and all it's dependencies, you can install this package 
+with your favioure package manager.
+
+Example:
+
+1. With Vundle - 
+```
+Plugin 'amitab/vim-unite-cscope'
+```
+
+2. With Pathogen
+```
+cd ~/.vim/bundle
+git clone https://github.com/amitab/vim-unite-cscope
+```
+3. With Neobundle
+```
+NeoBundle 'Shougo/unite.vim'
+```
 
 To generate cscope.out manually, in your project directory run:
 ```bash
