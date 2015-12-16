@@ -8,14 +8,17 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/including_this_file',
 \ 'description' : 'Find files including this file',
-\ 'is_volatile': 1
 \}
+
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/including_this_file] ')
-  call unite#print_message('find files including this file')
+  
+  return []
+endfunction "}}}
 
-  let keyword = cscope#get_keyword()
+function! s:source.change_candidates(args, context)
+  let keyword = a:context.input
   let data = cscope#including_this_file(keyword)
 
   return map(data, '{
@@ -25,7 +28,7 @@ function! s:source.gather_candidates(args, context) "{{{
 \   "action__path": v:val.file_name,
 \   "action__line": v:val.line_number
 \  }')
-endfunction "}}}
+endfunction
 
 " context getter {{{
 function! s:get_SID()

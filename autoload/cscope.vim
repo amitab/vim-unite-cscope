@@ -23,11 +23,6 @@ function! cscope#process_data(query)
   return results
 endfunction
 
-function! cscope#get_keyword()
-  let keyword = unite#get_context()['input']
-  return keyword
-endfunction
-
 function! cscope#c_symbol(keyword)
   let query = "cscope -d -L0 " . shellescape(a:keyword)
   return cscope#process_data(query)

@@ -8,14 +8,16 @@ endfunction "}}}
 let s:source = {
 \ 'name' : 'cscope/egrep_pattern',
 \ 'description' : 'Find this egrep pattern',
-\ 'is_volatile': 1
 \}
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/egrep_pattern] ')
-  call unite#print_message('find this egrep pattern')
+  
+  return []
+endfunction "}}}
 
-  let keyword = cscope#get_keyword()
+function! s:source.change_candidates(args, context)
+  let keyword = a:context.input
   let data = cscope#egrep_pattern(keyword)
 
   return map(data, '{
@@ -25,7 +27,7 @@ function! s:source.gather_candidates(args, context) "{{{
 \   "action__path": v:val.file_name,
 \   "action__line": v:val.line_number
 \  }')
-endfunction "}}}
+endfunction
 
 " context getter {{{
 function! s:get_SID()
