@@ -16,9 +16,43 @@ function! s:source.gather_candidates(args, context) "{{{
   return []
 endfunction "}}}
 
-function! s:source.change_candidates(args, context)
-  let keyword = a:context.input
-  let data = cscope#functions_calling(keyword)
+function! s:source.change_candidates(args, context) "{{{
+  if !unite#util#has_vimproc()
+    call unite#print_source_message(
+          \ 'vimproc plugin is not installed.', self.name)
+    let a:context.is_async = 0
+    return []
+  endif
+
+  if a:context.is_redraw
+    let a:context.is_async = 1
+  endif
+
+  let query = cscope#functions_calling(a:context.input)
+  
+  try
+    let a:context.source__proc = vimproc#plineopen2(
+          \ vimproc#util#iconv(
+          \   query, &encoding, 'char'), 1)
+  catch
+    call unite#print_error(v:exception)
+    let a:context.is_async = 0
+    return []
+  endtry
+
+  return self.async_gather_candidates(a:args, a:context)
+endfunction
+
+function! s:source.async_gather_candidates(args, context) "{{{
+  let stdout = a:context.source__proc.stdout
+  if stdout.eof
+    let a:context.is_async = 0
+    call a:context.source__proc.waitpid()
+  endif
+
+  let data = map(map(unite#util#read_lines(stdout, 1000),
+          \ "substitute(unite#util#iconv(v:val, 'char', &encoding), '\\e\\[\\u', '', 'g')"),
+          \ "cscope#line_parse(v:val)")
 
   return map(data, '{
 \   "word": v:val.line,
@@ -27,7 +61,7 @@ function! s:source.change_candidates(args, context)
 \   "action__path": v:val.file_name,
 \   "action__line": v:val.line_number
 \  }')
-endfunction
+endfunction"}}}
 
 " context getter {{{
 function! s:get_SID()
