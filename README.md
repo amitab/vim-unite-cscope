@@ -42,7 +42,7 @@ git clone https://github.com/amitab/vim-unite-cscope
 ```
 * With Neobundle
 ```
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'amitab/vim-unite-cscope'
 ```
 
 To generate cscope.out manually, in your project directory run:
