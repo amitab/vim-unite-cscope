@@ -12,11 +12,12 @@ let s:source = {
 
 function! s:source.gather_candidates(args, context) "{{{
   call unite#print_message('[cscope/find_this_symbol] ')
+  if len(a:args) == 0
+    let a:context.input = input('Find this symbol: ')
+  else
+    let a:context.input = a:args[0]
+  endif
   
-  return []
-endfunction "}}}
-
-function! s:source.change_candidates(args, context) "{{{
   if !unite#util#has_vimproc()
     call unite#print_source_message(
           \ 'vimproc plugin is not installed.', self.name)
