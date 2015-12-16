@@ -18,7 +18,7 @@ endfunction "}}}
 
 function! s:source.change_candidates(args, context)
   let keyword = a:context.input
-  let data = cscope#find_this_symbol(keyword)
+  let data = cscope#c_symbol(keyword)
 
   return map(data, '{
 \   "word": v:val.line,
