@@ -38,12 +38,6 @@ endfunction')"'")
 
 function! cscope#get_keyword()
   let keyword = unite#get_context()['input']
-  if keyword ==? ""
-    let keyword = expand("<cword>")
-  endif
-  if keyword ==? ""
-    let keyword = cscope#get_selection()
-  endif
   return keyword
 endfunction
 
